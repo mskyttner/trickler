@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  server:
+    image: mskyttner/trickler
+    environment:
+      - PLUMBER_DIR=/plumberdir
+      - DROP_PORT=8080
+    ports:
+      - 8000:8080
+    volumes:
+      - ./12-entrypoint:/plumberdir
+      - ./entrypoint.R:/plumberdir/entrypoint.R
+    restart: always
+
+  trickle:
+    image: mskyttner/trickler
+    command: R -e "plumber::plumb_api('plumber', '10-welcome')$$run(host='0.0.0.0', port=8080)"
+    ports:
+      - 8001:8080
+
+  rpy:
+    image: mskyttner/trickler
+    environment:
+      - PLUMBER_DIR=/plumberdir
+      - DROP_PORT=8080
+    ports:
+      - 8003:8080
+    volumes:
+      - ./rpy:/plumberdir
+    restart: always
+
+
+

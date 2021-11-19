@@ -1,0 +1,6 @@
+devtools
+base64enc
+progressr
+furrr
+reticulate
+
