@@ -14,5 +14,7 @@ up:
 
 	docker-compose up -d
 	firefox http://localhost:8000/counter &
+	firefox http://localhost:8001/ &
+	firefox http://localhost:8003/rpy &
 
 
