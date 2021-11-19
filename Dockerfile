@@ -18,10 +18,11 @@ COPY pkgs-github.txt /pkgs/
 RUN R -e "install.packages(readLines('/pkgs/pkgs-cran.txt'))"
 RUN R -e "devtools::install_github(readLines('/pkgs/pkgs-github.txt'))"
 RUN R -e "reticulate::install_miniconda()"
+
 # set the server to restart when there are changes in the PLUMBER_DIR
 ENTRYPOINT ["tini", "--"]
 ENV PLUMBER_DIR=/usr/local/lib/R/site-library/plumber/plumber/12-entrypoint
-COPY /start-drop.R .
+COPY /start-trickler.R .
 COPY /reloadr.sh .
-#CMD ["bash", "-c", "cd ${PLUMBER_DIR} && watcher -list -cmd='/start-drop.R' -startcmd ."]
+#CMD ["bash", "-c", "cd ${PLUMBER_DIR} && watcher -list -cmd='/start-trickler.R' -startcmd ."]
 CMD ["bash", "-c", "cd ${PLUMBER_DIR} && /reloadr.sh"]

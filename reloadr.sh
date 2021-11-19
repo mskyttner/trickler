@@ -2,11 +2,9 @@
 set -x
 
 reload() {
-  #nohup Rscript /start-drop.R 8080 entrypoint.R > /nohup.out &
-  nohup Rscript /start-drop.R 8080 entrypoint.R > /proc/1/fd/1 &
+  nohup Rscript /start-trickler.R 8080 entrypoint.R > /proc/1/fd/1 &
   DEV_SERVER_PID=$!
   PROCESS_RELOADING=0
-  # tail -f $( ls -Art /nohup.out | tail -n 1 )
 }
 
 reload
