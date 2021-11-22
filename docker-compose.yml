@@ -12,7 +12,6 @@ services:
     volumes:
       - ./12-entrypoint:/plumberdir
       - ./entrypoint.R:/plumberdir/entrypoint.R
-    restart: always
 
   trickle:
     image: ghcr.io/mskyttner/trickler
@@ -29,4 +28,3 @@ services:
       - 8003:8080
     volumes:
       - ./rpy:/plumberdir
-    restart: always
